@@ -1,0 +1,22 @@
+{
+  "name": "15 min Intermediate Pyramid",
+  "description": "Ladder-/piramide-intervallen die oplopen en weer aflopen in duur (30-60-90-120-90-60-30 sec) met 30 sec rust ertussen. Hoe korter het blok, hoe hoger de rate en inspanning.",
+  "source": "Pyramid rowing interval structure - ascending/descending ladder (common erg pyramid workout format)",
+  "stages": [
+    { "name": "Warming up", "type": "warmup", "duration": 150, "spm": 16 },
+    { "name": "Piramide 30s", "type": "row", "duration": 30, "spm": 30 },
+    { "name": "Rust", "type": "rest", "duration": 30, "spm": 18 },
+    { "name": "Piramide 60s", "type": "row", "duration": 60, "spm": 28 },
+    { "name": "Rust", "type": "rest", "duration": 30, "spm": 18 },
+    { "name": "Piramide 90s", "type": "row", "duration": 90, "spm": 26 },
+    { "name": "Rust", "type": "rest", "duration": 30, "spm": 18 },
+    { "name": "Piramide 120s", "type": "row", "duration": 120, "spm": 24 },
+    { "name": "Rust", "type": "rest", "duration": 30, "spm": 18 },
+    { "name": "Piramide 90s", "type": "row", "duration": 90, "spm": 26 },
+    { "name": "Rust", "type": "rest", "duration": 30, "spm": 18 },
+    { "name": "Piramide 60s", "type": "row", "duration": 60, "spm": 28 },
+    { "name": "Rust", "type": "rest", "duration": 30, "spm": 18 },
+    { "name": "Piramide 30s", "type": "row", "duration": 30, "spm": 30 },
+    { "name": "Afkoelen", "type": "cooldown", "duration": 90, "spm": 14 }
+  ]
+}

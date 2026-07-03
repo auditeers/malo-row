@@ -1,0 +1,13 @@
+{
+  "name": "20 minuten intervalmix",
+  "stages": [
+    { "name": "Warming up", "type": "warmup", "duration": 300, "spm": 18 },
+    { "name": "Interval 1", "type": "row", "duration": 120, "spm": 24 },
+    { "name": "Rust", "type": "rest", "duration": 60, "spm": 0 },
+    { "name": "Interval 2", "type": "row", "duration": 120, "spm": 26 },
+    { "name": "Rust", "type": "rest", "duration": 60, "spm": 0 },
+    { "name": "Interval 3", "type": "row", "duration": 120, "spm": 28 },
+    { "name": "Rust", "type": "rest", "duration": 60, "spm": 0 },
+    { "name": "Afkoelen", "type": "cooldown", "duration": 300, "spm": 16 }
+  ]
+}

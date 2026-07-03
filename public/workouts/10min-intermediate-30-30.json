@@ -1,0 +1,17 @@
+{
+  "name": "10 min Intermediate 30:30",
+  "description": "De klassieke '4x30:30' intervalvorm: 30 sec vol aan gevolgd door 30 sec rust, die de balans tussen het anaerobe en aerobe systeem test. Hier verpakt in een compacte 10-minuten sessie met warming-up en afkoelen.",
+  "source": "Concept2 training guidance - '4 x 30:30' test (30s max effort / 30s recovery, x4)",
+  "stages": [
+    { "name": "Warming up", "type": "warmup", "duration": 190, "spm": 18 },
+    { "name": "Sprint 1", "type": "row", "duration": 30, "spm": 30 },
+    { "name": "Rust 1", "type": "rest", "duration": 30, "spm": 18 },
+    { "name": "Sprint 2", "type": "row", "duration": 30, "spm": 30 },
+    { "name": "Rust 2", "type": "rest", "duration": 30, "spm": 18 },
+    { "name": "Sprint 3", "type": "row", "duration": 30, "spm": 30 },
+    { "name": "Rust 3", "type": "rest", "duration": 30, "spm": 18 },
+    { "name": "Sprint 4", "type": "row", "duration": 30, "spm": 30 },
+    { "name": "Rust 4", "type": "rest", "duration": 30, "spm": 18 },
+    { "name": "Afkoelen", "type": "cooldown", "duration": 170, "spm": 14 }
+  ]
+}

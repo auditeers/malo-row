@@ -1,0 +1,21 @@
+{
+  "name": "10 min Expert Power Strokes",
+  "description": "Korte krachtgerichte sessie: lage stroke rate met maximale kracht per haal (16-20 spm). Rate laag houden 'dwingt' een krachtiger, ritmischer haal af in plaats van simpelweg sneller te roeien.",
+  "source": "Low-rate, high-power strength-stroke guidance for indoor rowing (16-20 spm work phase)",
+  "stages": [
+    { "name": "Warming up", "type": "warmup", "duration": 120, "spm": 16 },
+    { "name": "Power 1", "type": "row", "duration": 30, "spm": 18 },
+    { "name": "Rust 1", "type": "rest", "duration": 30, "spm": 22 },
+    { "name": "Power 2", "type": "row", "duration": 30, "spm": 18 },
+    { "name": "Rust 2", "type": "rest", "duration": 30, "spm": 22 },
+    { "name": "Power 3", "type": "row", "duration": 30, "spm": 18 },
+    { "name": "Rust 3", "type": "rest", "duration": 30, "spm": 22 },
+    { "name": "Power 4", "type": "row", "duration": 30, "spm": 18 },
+    { "name": "Rust 4", "type": "rest", "duration": 30, "spm": 22 },
+    { "name": "Power 5", "type": "row", "duration": 30, "spm": 18 },
+    { "name": "Rust 5", "type": "rest", "duration": 30, "spm": 22 },
+    { "name": "Power 6", "type": "row", "duration": 30, "spm": 18 },
+    { "name": "Rust 6", "type": "rest", "duration": 30, "spm": 22 },
+    { "name": "Afkoelen", "type": "cooldown", "duration": 120, "spm": 14 }
+  ]
+}

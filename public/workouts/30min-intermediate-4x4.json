@@ -1,0 +1,16 @@
+{
+  "name": "30 min Intermediate 4x4",
+  "description": "De bekende '4x4 minuten' intervaltraining: vier blokken van 4 minuten stevig doorhalen met 2 minuten rust ertussen. Probeer elke ronde je gemiddelde tempo te evenaren of te verbeteren.",
+  "source": "Concept2 training guidance - 4x4 minute work intervals with 2 minute rest",
+  "stages": [
+    { "name": "Warming up", "type": "warmup", "duration": 300, "spm": 16 },
+    { "name": "Interval 1", "type": "row", "duration": 240, "spm": 26 },
+    { "name": "Rust 1", "type": "rest", "duration": 120, "spm": 18 },
+    { "name": "Interval 2", "type": "row", "duration": 240, "spm": 26 },
+    { "name": "Rust 2", "type": "rest", "duration": 120, "spm": 18 },
+    { "name": "Interval 3", "type": "row", "duration": 240, "spm": 26 },
+    { "name": "Rust 3", "type": "rest", "duration": 120, "spm": 18 },
+    { "name": "Interval 4", "type": "row", "duration": 240, "spm": 26 },
+    { "name": "Afkoelen", "type": "cooldown", "duration": 180, "spm": 14 }
+  ]
+}

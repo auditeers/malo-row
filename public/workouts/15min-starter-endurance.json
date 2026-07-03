@@ -1,0 +1,10 @@
+{
+  "name": "15 min Starter Endurance",
+  "description": "Langere doorlopende duurtraining voor beginners op gelijkmatige lage/matige rate, met focus op ademhaling en een consistente haal.",
+  "source": "British Rowing - Go Row Indoor beginner guidance (18-24 spm continuous steady state)",
+  "stages": [
+    { "name": "Warming up", "type": "warmup", "duration": 180, "spm": 16 },
+    { "name": "Steady state", "type": "row", "duration": 600, "spm": 20 },
+    { "name": "Afkoelen", "type": "cooldown", "duration": 120, "spm": 14 }
+  ]
+}

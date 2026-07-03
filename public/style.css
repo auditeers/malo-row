@@ -1,0 +1,453 @@
+:root {
+  --bg: #0a0f11;
+  --bg-glow: #102b29;
+  --surface: #161f22;
+  --surface-border: rgba(255, 255, 255, 0.07);
+  --teal: #2af0c9;
+  --teal-soft: #1b8f80;
+  --teal-dark: #123c3a;
+  --orange: #ffab2e;
+  --red: #ff5a6a;
+  --orange-glow: rgba(255, 171, 46, 0.3);
+  --red-glow: rgba(255, 90, 106, 0.3);
+  --track: #212d30;
+  --text: #eef5f4;
+  --text-muted: #82918f;
+  --danger-dark: #1c1416;
+
+  /* --- Sizing tokens (overridden by the responsive breakpoints below) --- */
+  --app-padding-y: 24px;
+  --app-padding-x: 44px;
+  --side-col-width: 220px;
+  --panel-gap: 24px;
+  --font-workout-title: 16px;
+
+  --font-stat-label: 17px;
+  --font-stat-value: 30px;
+
+  --font-upcoming-label: 16px;
+  --font-upcoming-title: 27px;
+
+  --cadence-padding: 16px 26px 24px;
+  --cadence-margin-bottom: 22px;
+  --font-phase-label: 27px;
+  --bar-height: 20px;
+  --thumb-size: 34px;
+
+  --gauge-max-width: 600px;
+  --font-stage-count: 19px;
+  --font-action-label: 42px;
+  --font-stage-timer: 66px;
+  --font-stage-name: 21px;
+  --font-countdown-number: 110px;
+
+  --font-spm-value: 54px;
+  --font-spm-label: 17px;
+  --ctrl-btn-size: 66px;
+  --ctrl-gap: 15px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: radial-gradient(ellipse 900px 500px at 50% -8%, var(--bg-glow) 0%, var(--bg) 60%) var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", Arial, sans-serif;
+  user-select: none;
+}
+
+.app {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--side-col-width) 1fr var(--side-col-width);
+  align-items: center;
+  height: 100vh;
+  padding: var(--app-padding-y) var(--app-padding-x);
+}
+
+.settings-btn {
+  position: absolute;
+  top: 22px;
+  right: var(--app-padding-x);
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px;
+}
+
+.workout-title {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: min(60%, 480px);
+  font-size: var(--font-workout-title);
+  font-weight: 700;
+  color: var(--text-muted);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.settings-btn:hover { color: var(--teal); }
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--panel-gap);
+  justify-self: start;
+}
+
+.stat-label {
+  font-size: var(--font-stat-label);
+  color: var(--text-muted);
+}
+
+.stat-value {
+  font-size: var(--font-stat-value);
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text);
+}
+
+.center-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.upcoming-label {
+  font-size: var(--font-upcoming-label);
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.upcoming-title {
+  font-size: var(--font-upcoming-title);
+  font-weight: 800;
+  margin-bottom: 8px;
+  min-height: 1.2em;
+  color: var(--text);
+}
+
+.cadence-panel {
+  width: min(560px, 92%);
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 20px;
+  padding: var(--cadence-padding);
+  margin-bottom: var(--cadence-margin-bottom);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+  transition: box-shadow 0.15s ease;
+}
+
+.phase-label {
+  font-size: var(--font-phase-label);
+  font-weight: 900;
+  letter-spacing: 2px;
+  min-height: 1.2em;
+  margin-bottom: 10px;
+  color: var(--text-muted);
+  transition: color 0.1s linear;
+}
+.phase-label.drive { color: var(--red); }
+.phase-label.recover { color: var(--orange); }
+
+.stroke-bar-track {
+  position: relative;
+  width: 100%;
+  height: var(--bar-height);
+  border-radius: 999px;
+  background: var(--track);
+}
+.stroke-bar-fill {
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  border-radius: 999px;
+  background: var(--orange);
+}
+.stroke-bar-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  border-radius: 50%;
+  background: var(--surface);
+  border: 5px solid var(--orange);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.gauge-wrap {
+  position: relative;
+  width: 100%;
+  max-width: var(--gauge-max-width);
+}
+
+#gauge {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.arc {
+  fill: none;
+  stroke-linecap: round;
+}
+.arc-bg { stroke: var(--track); stroke-width: 22; }
+#arc-progress {
+  stroke: var(--teal);
+  stroke-width: 22;
+  filter: drop-shadow(0 0 6px rgba(42, 240, 201, 0.45));
+}
+
+.gauge-center {
+  position: absolute;
+  left: 50%;
+  top: 62%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+
+.countdown-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 15, 17, 0.94);
+  border-radius: 24px;
+}
+.countdown-overlay[hidden] {
+  display: none;
+}
+.countdown-label {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.countdown-number {
+  font-size: var(--font-countdown-number);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--teal);
+  text-shadow: 0 0 30px rgba(42, 240, 201, 0.35);
+}
+
+.stage-count {
+  font-size: var(--font-stage-count);
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.action-label {
+  font-size: var(--font-action-label);
+  font-weight: 900;
+  color: var(--teal);
+  line-height: 1.1;
+}
+.action-label.paused {
+  color: var(--text-muted);
+}
+
+.stage-timer {
+  font-size: var(--font-stage-timer);
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--text);
+  text-shadow: 0 0 24px rgba(42, 240, 201, 0.25);
+}
+
+.stage-name {
+  font-size: var(--font-stage-name);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 2px;
+  color: var(--text-muted);
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--panel-gap);
+  justify-self: end;
+}
+
+.spm-display {
+  text-align: center;
+}
+.spm-value {
+  font-size: var(--font-spm-value);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--text);
+}
+.spm-label {
+  font-size: var(--font-spm-label);
+  font-weight: 700;
+  color: var(--teal);
+  margin-top: 4px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--ctrl-gap);
+}
+
+.ctrl-btn {
+  width: var(--ctrl-btn-size);
+  height: var(--ctrl-btn-size);
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text);
+}
+.ctrl-secondary { background: var(--teal-dark); }
+.ctrl-dark { background: var(--danger-dark); color: var(--text-muted); }
+.ctrl-primary {
+  background: var(--teal);
+  color: #052422;
+  box-shadow: 0 0 22px rgba(42, 240, 201, 0.4);
+}
+.ctrl-btn:active { filter: brightness(0.85); }
+
+.settings-panel {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+.settings-panel[hidden] {
+  display: none;
+}
+.settings-inner {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+  padding: 28px 32px;
+  width: 360px;
+  max-width: 90vw;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+.settings-inner h2 { margin: 0 0 12px; font-size: 20px; color: var(--text); }
+.workout-name { color: var(--text-muted); margin-bottom: 18px; }
+.file-label {
+  display: block;
+  background: var(--teal);
+  color: #052422;
+  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.file-label input { display: none; }
+.text-btn {
+  display: block;
+  width: 100%;
+  background: none;
+  border: 1px solid var(--surface-border);
+  color: var(--text);
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.text-btn:hover { border-color: var(--teal); color: var(--teal); }
+
+/* Portrait phones/tablets: plenty of height, so stack the three columns.
+   The four control buttons go in a single row (there's width to spare) and
+   grow a bit, since this is the layout used for actual thumb-tapping. */
+@media (max-width: 900px) and (min-height: 560px) {
+  :root {
+    --ctrl-btn-size: 78px;
+    --ctrl-gap: 14px;
+  }
+  .app {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    justify-items: center;
+    height: auto;
+    min-height: 100vh;
+    gap: 24px;
+    padding: 60px 20px 30px;
+  }
+  .left-panel { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 10px 26px; max-width: 90vw; }
+  .right-panel { flex-direction: column; }
+  .controls { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Landscape phones (short viewport): keep the 3-column layout - it already
+   fits the width - but scale everything down so it fits the height without
+   scrolling. Re-declares the grid explicitly so it always wins here even if
+   the width also happens to match the portrait-stacking query above. */
+@media (max-height: 500px) {
+  :root {
+    --app-padding-y: 8px;
+    --app-padding-x: 18px;
+    --side-col-width: 130px;
+    --panel-gap: 8px;
+    --font-workout-title: 11px;
+
+    --font-stat-label: 11px;
+    --font-stat-value: 17px;
+
+    --font-upcoming-label: 11px;
+    --font-upcoming-title: 15px;
+
+    --cadence-padding: 6px 14px 10px;
+    --cadence-margin-bottom: 8px;
+    --font-phase-label: 15px;
+    --bar-height: 10px;
+    --thumb-size: 20px;
+
+    --gauge-max-width: 280px;
+    --font-stage-count: 12px;
+    --font-action-label: 20px;
+    --font-stage-timer: 32px;
+    --font-stage-name: 12px;
+    --font-countdown-number: 56px;
+
+    --font-spm-value: 24px;
+    --font-spm-label: 10px;
+    --ctrl-btn-size: 46px;
+    --ctrl-gap: 6px;
+  }
+
+  .app {
+    grid-template-columns: var(--side-col-width) 1fr var(--side-col-width);
+    grid-template-rows: none;
+    height: 100vh;
+    min-height: 0;
+  }
+  .left-panel { flex-direction: column; }
+  .right-panel { flex-direction: row-reverse; align-items: center; }
+  .right-panel .spm-display { margin-right: 8px; }
+  .controls { grid-template-columns: 1fr; }
+  .settings-btn { top: 6px; }
+  .workout-title { top: 6px; }
+  .ctrl-btn svg { width: 60%; height: 60%; }
+  .stage-timer { text-shadow: none; }
+  .action-label { line-height: 1; }
+}

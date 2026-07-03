@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Roeitrainer</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+
+  <div class="workout-title" id="workout-title">&nbsp;</div>
+
+  <button id="settings-btn" class="icon-btn settings-btn" title="Instellingen">
+    <svg viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M19.14 12.94a7.14 7.14 0 0 0 .06-.94 7.14 7.14 0 0 0-.06-.94l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.6-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54a.5.5 0 0 0-.5-.42h-3.84a.5.5 0 0 0-.5.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.6.22L2.7 8.84a.5.5 0 0 0 .12.64l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94L2.82 14.5a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.32.6.22l2.39-.96c.49.38 1.03.7 1.62.94l.36 2.54a.5.5 0 0 0 .5.42h3.84a.5.5 0 0 0 .5-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.24.1.48 0 .6-.22l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.56ZM12 15.5A3.5 3.5 0 1 1 12 8.5a3.5 3.5 0 0 1 0 7Z"/></svg>
+  </button>
+
+  <div class="left-panel">
+    <div class="stat">
+      <div class="stat-label">Totaal</div>
+      <div class="stat-value" id="stat-total">00:00</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Verstreken</div>
+      <div class="stat-value" id="stat-elapsed">00:00</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Overig</div>
+      <div class="stat-value" id="stat-remaining">00:00</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Halen</div>
+      <div class="stat-value" id="stat-strokes">0</div>
+    </div>
+  </div>
+
+  <div class="center-panel">
+    <div class="upcoming-label">Binnenkort</div>
+    <div class="upcoming-title" id="upcoming-title">&nbsp;</div>
+
+    <div class="cadence-panel" id="cadence-panel">
+      <div class="phase-label" id="phase-label">&nbsp;</div>
+      <div class="stroke-bar-track" id="stroke-bar-track">
+        <div class="stroke-bar-fill" id="stroke-bar-fill"></div>
+        <div class="stroke-bar-thumb" id="stroke-bar-thumb"></div>
+      </div>
+    </div>
+
+    <div class="gauge-wrap">
+      <svg id="gauge" viewBox="0 0 400 230">
+        <path id="arc-bg" class="arc arc-bg" />
+        <path id="arc-progress" class="arc" />
+      </svg>
+      <div class="gauge-center">
+        <div class="stage-count" id="stage-count">0/0</div>
+        <div class="action-label" id="action-label">RIJ</div>
+        <div class="stage-timer" id="stage-timer">00:00</div>
+        <div class="stage-name" id="stage-name">&nbsp;</div>
+      </div>
+      <div class="countdown-overlay" id="countdown-overlay" hidden>
+        <div class="countdown-label">Klaar over</div>
+        <div class="countdown-number" id="countdown-number">5</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <div class="spm-display">
+      <div class="spm-value" id="spm-value">0</div>
+      <div class="spm-label">SPM</div>
+    </div>
+    <div class="controls">
+      <button id="btn-prev" class="ctrl-btn ctrl-secondary" title="Vorige">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+      </button>
+      <button id="btn-next" class="ctrl-btn ctrl-secondary" title="Volgende">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M16 6h2v12h-2zM6 6l8.5 6L6 18z"/></svg>
+      </button>
+      <button id="btn-stop" class="ctrl-btn ctrl-dark" title="Stop">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M6.4 4.98 4.98 6.4 10.59 12l-5.61 5.6 1.42 1.42L12 13.41l5.6 5.61 1.42-1.42L13.41 12l5.61-5.6-1.42-1.42L12 10.59z"/></svg>
+      </button>
+      <button id="btn-playpause" class="ctrl-btn ctrl-primary" title="Start/Pauze">
+        <svg id="icon-play" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+        <svg id="icon-pause" viewBox="0 0 24 24" width="24" height="24" style="display:none"><path fill="currentColor" d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="settings-panel" id="settings-panel" hidden>
+    <div class="settings-inner">
+      <h2>Instellingen</h2>
+      <p class="workout-name" id="workout-name">Geen workout geladen</p>
+      <label class="file-label">
+        Laad workout JSON
+        <input type="file" id="file-input" accept="application/json,.json" />
+      </label>
+      <button id="btn-load-example" class="text-btn">Laad voorbeeld workout</button>
+      <button id="settings-close" class="text-btn">Sluiten</button>
+    </div>
+  </div>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>

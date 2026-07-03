@@ -163,8 +163,15 @@ function describeArc(radius, f1, f2) {
   return `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${end.x} ${end.y}`;
 }
 
-function formatTime(seconds) {
-  seconds = Math.max(0, Math.round(seconds));
+// mode: 'floor' for count-up displays (elapsed) so "00:00" holds the full
+// first second; 'ceil' for countdown displays (remaining) so the starting
+// value also holds a full second instead of only half of one. Math.round
+// used to do this for every display, which meant the very first number
+// shown after any stage/workout start only lasted ~0.5s before ticking -
+// every subsequent tick was correctly spaced at a full second, but that
+// short first one read as the whole countdown running fast.
+function formatTime(seconds, mode) {
+  seconds = Math.max(0, mode === 'ceil' ? Math.ceil(seconds) : Math.floor(seconds));
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
   return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
@@ -286,11 +293,11 @@ function render(nowPerf) {
 
   setText(els.statTotal, 'total', formatTime(totalDuration));
   setText(els.statElapsed, 'elapsed', formatTime(elapsed));
-  setText(els.statRemaining, 'remaining', formatTime(totalDuration - elapsed));
+  setText(els.statRemaining, 'remaining', formatTime(totalDuration - elapsed, 'ceil'));
   setText(els.statStrokes, 'strokes', String(computeStrokeCount(elapsed)));
 
   setText(els.stageCount, 'stageCount', `${idx + 1}/${workout.stages.length}`);
-  setText(els.stageTimer, 'stageTimer', formatTime(finished ? 0 : stageRemaining));
+  setText(els.stageTimer, 'stageTimer', formatTime(finished ? 0 : stageRemaining, 'ceil'));
   setText(els.stageName, 'stageName', finished ? 'klaar' : stage.name);
   setText(els.spmValue, 'spm', String(stage.spm));
 

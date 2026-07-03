@@ -68,6 +68,7 @@ const els = {
   settingsClose: document.getElementById('settings-close'),
   workoutName: document.getElementById('workout-name'),
   workoutTitle: document.getElementById('workout-title'),
+  workoutSelect: document.getElementById('workout-select'),
   fileInput: document.getElementById('file-input'),
   btnLoadExample: document.getElementById('btn-load-example'),
   btnPrev: document.getElementById('btn-prev'),
@@ -645,6 +646,7 @@ els.fileInput.addEventListener('change', (e) => {
     try {
       const data = JSON.parse(reader.result);
       loadWorkout(data);
+      els.workoutSelect.value = '';
       els.settingsPanel.hidden = true;
     } catch (err) {
       alert('Kon JSON-bestand niet lezen: ' + err.message);
@@ -655,7 +657,45 @@ els.fileInput.addEventListener('change', (e) => {
 
 els.btnLoadExample.addEventListener('click', () => {
   loadWorkout(DEFAULT_WORKOUT);
+  els.workoutSelect.value = '';
   els.settingsPanel.hidden = true;
+});
+
+// Populate the "load from library" dropdown from workouts/index.json, so the
+// list of available workouts lives in one place (that manifest) instead of
+// being hard-coded here. Fails quietly if unavailable (e.g. opened via
+// file:// rather than a real server) - the file-picker and example button
+// still work either way.
+fetch('workouts/index.json')
+  .then((r) => r.json())
+  .then((entries) => {
+    for (const entry of entries) {
+      const option = document.createElement('option');
+      option.value = entry.file;
+      option.textContent = entry.name;
+      els.workoutSelect.appendChild(option);
+    }
+  })
+  .catch(() => {
+    // No manifest reachable - leave the dropdown as just the placeholder.
+  });
+
+els.workoutSelect.addEventListener('change', () => {
+  const file = els.workoutSelect.value;
+  if (!file) return;
+  fetch('workouts/' + file)
+    .then((r) => {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then((data) => {
+      loadWorkout(data);
+      els.settingsPanel.hidden = true;
+    })
+    .catch((err) => {
+      alert('Kon workout niet laden: ' + err.message);
+      els.workoutSelect.value = '';
+    });
 });
 
 // Load instantly from the embedded default - no network round-trip needed,

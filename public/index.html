@@ -90,8 +90,14 @@
     <div class="settings-inner">
       <h2>Instellingen</h2>
       <p class="workout-name" id="workout-name">Geen workout geladen</p>
+
+      <label class="select-label" for="workout-select">Kies uit bibliotheek</label>
+      <select id="workout-select" class="workout-select">
+        <option value="">– Kies een workout –</option>
+      </select>
+
       <label class="file-label">
-        Laad workout JSON
+        Laad eigen workout JSON
         <input type="file" id="file-input" accept="application/json,.json" />
       </label>
       <button id="btn-load-example" class="text-btn">Laad voorbeeld workout</button>

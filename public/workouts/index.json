@@ -1,0 +1,14 @@
+[
+  { "file": "10min-starter-endurance.json", "name": "10 min - Starter - Endurance" },
+  { "file": "10min-intermediate-30-30.json", "name": "10 min - Intermediate - 30:30 Intervals" },
+  { "file": "10min-expert-power.json", "name": "10 min - Expert - Power Strokes" },
+  { "file": "15min-starter-endurance.json", "name": "15 min - Starter - Endurance" },
+  { "file": "15min-intermediate-pyramid.json", "name": "15 min - Intermediate - Pyramid" },
+  { "file": "15min-expert-strength.json", "name": "15 min - Expert - Strength" },
+  { "file": "20min-starter-endurance.json", "name": "20 min - Starter - Endurance" },
+  { "file": "20min-intermediate-40-20.json", "name": "20 min - Intermediate - 40:20 Intervals" },
+  { "file": "20min-expert-8x1.json", "name": "20 min - Expert - 8x1 Intervals" },
+  { "file": "30min-starter-endurance.json", "name": "30 min - Starter - Endurance" },
+  { "file": "30min-intermediate-4x4.json", "name": "30 min - Intermediate - 4x4 Intervals" },
+  { "file": "30min-expert-pyramid.json", "name": "30 min - Expert - Pyramid" }
+]

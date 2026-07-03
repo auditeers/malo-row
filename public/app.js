@@ -64,6 +64,8 @@ const els = {
   iconPlay: document.getElementById('icon-play'),
   iconPause: document.getElementById('icon-pause'),
   settingsBtn: document.getElementById('settings-btn'),
+  rotateBanner: document.getElementById('rotate-banner'),
+  rotateBannerClose: document.getElementById('rotate-banner-close'),
   settingsPanel: document.getElementById('settings-panel'),
   settingsClose: document.getElementById('settings-close'),
   workoutName: document.getElementById('workout-name'),
@@ -245,6 +247,7 @@ function render(nowPerf) {
       requestWakeLock();
       startAudioScheduler();
       beep(1000, 0.15); // "go"
+      vibrate([60, 40, 60]); // double buzz - distinct from the plain ticks
     } else {
       // Clamp: a rAF timestamp can land a hair before the click handler's own
       // performance.now(), making `remaining` compute just over 5s on the
@@ -255,6 +258,7 @@ function render(nowPerf) {
         last.countdownShown = shown;
         els.countdownNumber.textContent = String(shown);
         beep(600, 0.08); // tick
+        vibrate(40);
         els.strokeBarFill.style.width = '0%';
         els.strokeBarThumb.style.left = '0%';
         els.cadencePanel.style.boxShadow = '';
@@ -300,7 +304,10 @@ function render(nowPerf) {
     const secondsLeft = Math.ceil(stageRemaining);
     if (last.stageEndingSecond !== secondsLeft) {
       last.stageEndingSecond = secondsLeft;
-      if (running) beep(700, 0.07);
+      if (running) {
+        beep(700, 0.07);
+        vibrate(40);
+      }
     }
   } else {
     last.stageEndingSecond = null;
@@ -463,6 +470,21 @@ function audioTimeFromPerf(perfMs) {
   const nowPerf = performance.now();
   const nowAudio = audioCtx.currentTime;
   return nowAudio + (perfMs - nowPerf) / 1000;
+}
+
+// Haptic backup for the discrete cues (countdown ticks, "go", stage-ending
+// ticks) - useful over gym music or without headphones in. Deliberately not
+// used for the per-stroke cadence beeps: buzzing on every stroke the whole
+// workout would be excessive and drain the battery for no real benefit.
+// iOS Safari has no Vibration API at all, so this is a no-op there.
+function vibrate(pattern) {
+  if (navigator.vibrate) {
+    try {
+      navigator.vibrate(pattern);
+    } catch (e) {
+      // Ignore - vibration is a nice-to-have, never worth breaking a cue over.
+    }
+  }
 }
 
 function beep(freq, duration, when) {
@@ -742,3 +764,28 @@ els.workoutSelect.addEventListener('change', () => {
 // Load instantly from the embedded default - no network round-trip needed,
 // so the page is fully usable the moment it's opened (online or offline).
 loadWorkout(DEFAULT_WORKOUT);
+
+// Precache the app shell and workout library so the app keeps working with
+// no signal at all (e.g. a basement gym) once it's been opened once.
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+
+// The layout is tuned for landscape (bigger gauge, roomier controls), so
+// nudge toward rotating - but portrait works fine too, so this is a
+// dismissible hint, not a hard block. Dismissing it holds for the rest of
+// the browser session; it comes back if you reopen the app later.
+const portraitQuery = window.matchMedia('(orientation: portrait)');
+let rotateBannerDismissed = sessionStorage.getItem('rotateBannerDismissed') === '1';
+function updateRotateBanner() {
+  els.rotateBanner.hidden = rotateBannerDismissed || !portraitQuery.matches;
+}
+portraitQuery.addEventListener('change', updateRotateBanner);
+els.rotateBannerClose.addEventListener('click', () => {
+  rotateBannerDismissed = true;
+  sessionStorage.setItem('rotateBannerDismissed', '1');
+  updateRotateBanner();
+});
+updateRotateBanner();

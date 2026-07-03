@@ -634,6 +634,24 @@ function requestFullscreenBestEffort() {
   request.call(el).catch(() => {});
 }
 
+// Counterpart for the Stop button: leaves real Fullscreen-API fullscreen
+// (reliable - Android Chrome/desktop). Also makes a best-effort attempt to
+// close the window/tab outright, but that's NOT reliable: browsers only let
+// a page close a window it opened itself via window.open(). There is no web
+// API that lets a page close an installed PWA - every browser blocks that
+// as a security restriction (a page closing itself/other tabs at will would
+// be a huge abuse vector), so on an installed home-screen PWA this call is
+// simply a no-op and the user leaves the same way they'd leave any app: the
+// OS app-switcher / swipe-up gesture, not an in-app button.
+function exitFullscreenAndCloseBestEffort() {
+  const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
+  if (isFullscreen) {
+    const exit = document.exitFullscreen || document.webkitExitFullscreen;
+    if (exit) exit.call(document).catch(() => {});
+  }
+  window.close();
+}
+
 els.btnPlayPause.addEventListener('click', () => {
   if (!workout) return;
   ensureAudio();
@@ -678,6 +696,7 @@ els.btnStop.addEventListener('click', () => {
   stopAudioScheduler();
   cancelPendingCadenceBeeps();
   releaseWakeLock();
+  exitFullscreenAndCloseBestEffort();
 });
 
 els.btnNext.addEventListener('click', () => {

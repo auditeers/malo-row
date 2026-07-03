@@ -57,6 +57,9 @@ html, body {
   color: var(--text);
   font-family: "Segoe UI", Arial, sans-serif;
   user-select: none;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: manipulation;
 }
 
 .app {
@@ -65,7 +68,11 @@ html, body {
   grid-template-columns: var(--side-col-width) 1fr var(--side-col-width);
   align-items: center;
   height: 100vh;
-  padding: var(--app-padding-y) var(--app-padding-x);
+  height: 100dvh;
+  padding-top: max(var(--app-padding-y), env(safe-area-inset-top));
+  padding-bottom: max(var(--app-padding-y), env(safe-area-inset-bottom));
+  padding-left: max(var(--app-padding-x), env(safe-area-inset-left));
+  padding-right: max(var(--app-padding-x), env(safe-area-inset-right));
 }
 
 .settings-btn {

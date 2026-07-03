@@ -591,9 +591,23 @@ function cadenceSchedulerTick() {
 
 // --- Controls -------------------------------------------------------------
 
+// Real Fullscreen API request, best-effort - works on Android Chrome/desktop
+// browsers for a plain (non-installed) tab. iOS Safari doesn't support the
+// Fullscreen API at all; there, "Add to Home Screen" (via manifest.json's
+// display:fullscreen + the apple-mobile-web-app meta tags) is what gets rid
+// of the browser chrome instead. Never throws - it's a nice-to-have, not
+// something that should ever break the Play button.
+function requestFullscreenBestEffort() {
+  const el = document.documentElement;
+  const request = el.requestFullscreen || el.webkitRequestFullscreen;
+  if (!request || document.fullscreenElement) return;
+  request.call(el).catch(() => {});
+}
+
 els.btnPlayPause.addEventListener('click', () => {
   if (!workout) return;
   ensureAudio();
+  requestFullscreenBestEffort();
   const now = performance.now();
 
   if (countdownActive) {

@@ -96,6 +96,10 @@ const COUNTDOWN_SECONDS = 5;
 let countdownActive = false;
 let countdownStartPerf = null;
 
+// In the last few seconds of any stage, the countdown color changes and
+// ticks once per second as a heads-up that the next stage is about to start.
+const STAGE_ENDING_WARNING_SECONDS = 5;
+
 // The elapsed-time point the stroke cycle counts from - reset to the current
 // position every time a run begins (initial start or resume from pause), so
 // you always meet the catch/Drive first rather than resuming mid-Recovery.
@@ -283,6 +287,24 @@ function render(nowPerf) {
   setText(els.stageTimer, 'stageTimer', formatTime(finished ? 0 : stageRemaining));
   setText(els.stageName, 'stageName', finished ? 'klaar' : stage.name);
   setText(els.spmValue, 'spm', String(stage.spm));
+
+  // Heads-up for the next stage: color the countdown for the last few
+  // seconds and tick once per second, same cue language as the get-ready
+  // countdown at the start.
+  const stageEnding = !finished && stageRemaining > 0 && stageRemaining <= STAGE_ENDING_WARNING_SECONDS;
+  if (last.stageEnding !== stageEnding) {
+    last.stageEnding = stageEnding;
+    els.stageTimer.className = 'stage-timer' + (stageEnding ? ' ending' : '');
+  }
+  if (stageEnding) {
+    const secondsLeft = Math.ceil(stageRemaining);
+    if (last.stageEndingSecond !== secondsLeft) {
+      last.stageEndingSecond = secondsLeft;
+      if (running) beep(700, 0.07);
+    }
+  } else {
+    last.stageEndingSecond = null;
+  }
 
   const paused = !running && !finished && hasStarted;
   setText(els.actionLabel, 'action', paused ? 'PAUZE' : stage.spm > 0 ? 'RIJ' : 'RUST');

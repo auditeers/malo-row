@@ -269,6 +269,11 @@ html, body {
   letter-spacing: 2px;
   color: var(--text);
   text-shadow: 0 0 24px rgba(42, 240, 201, 0.25);
+  transition: color 0.15s ease;
+}
+.stage-timer.ending {
+  color: var(--orange);
+  text-shadow: 0 0 24px rgba(255, 171, 46, 0.35);
 }
 
 .stage-name {

@@ -309,7 +309,12 @@ function render(nowPerf) {
   // by the look-ahead audio scheduler below, which is what actually needs
   // to land on the exact stroke boundary.
   let sweep = 0;
-  if (stage.spm > 0 && !finished) {
+  const cadenceVisible = stage.spm > 0 && !finished;
+  if (last.cadenceVisible !== cadenceVisible) {
+    last.cadenceVisible = cadenceVisible;
+    els.cadencePanel.hidden = !cadenceVisible;
+  }
+  if (cadenceVisible) {
     const period = 60 / stage.spm;
     const driveRatio = stage.driveRatio != null ? stage.driveRatio : driveFractionForSpm(stage.spm);
     const driveDur = period * driveRatio;

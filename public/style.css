@@ -145,6 +145,9 @@ html, body {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), 0 10px 30px -12px rgba(0, 0, 0, 0.6);
   transition: box-shadow 0.15s ease;
 }
+.cadence-panel[hidden] {
+  display: none;
+}
 
 .phase-label {
   font-size: var(--font-phase-label);

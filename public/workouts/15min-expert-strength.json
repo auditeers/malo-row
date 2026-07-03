@@ -3,7 +3,7 @@
   "description": "Krachtintervallen op lage rate met hoge power per haal (2 min hard / 1 min rustig, x4), gericht op kracht en haalsnelheid per slag in plaats van een hoge stroke rate.",
   "source": "Low-rate, high-power strength training guidance for indoor rowing (16-20 spm work phase)",
   "stages": [
-    { "name": "Warming up", "type": "warmup", "duration": 120, "spm": 16 },
+    { "name": "Warming up", "type": "warmup", "duration": 120, "spm": 20 },
     { "name": "Kracht 1", "type": "row", "duration": 120, "spm": 18 },
     { "name": "Rust 1", "type": "rest", "duration": 60, "spm": 20 },
     { "name": "Kracht 2", "type": "row", "duration": 120, "spm": 18 },

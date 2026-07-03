@@ -3,8 +3,8 @@
   "description": "De aanbevolen doorlopende duurtraining voor beginners: 20 minuten gelijkmatig roeien op 18-24 spm, met focus op techniek en consistentie in plaats van snelheid.",
   "source": "British Rowing - Go Row Indoor beginner guidance (continuous steady state, 18-24 spm)",
   "stages": [
-    { "name": "Warming up", "type": "warmup", "duration": 180, "spm": 16 },
-    { "name": "Steady state", "type": "row", "duration": 900, "spm": 20 },
-    { "name": "Afkoelen", "type": "cooldown", "duration": 120, "spm": 14 }
+    { "name": "Warming up", "type": "warmup", "duration": 180, "spm": 20 },
+    { "name": "Steady state", "type": "row", "duration": 900, "spm": 25 },
+    { "name": "Afkoelen", "type": "cooldown", "duration": 120, "spm": 20 }
   ]
 }

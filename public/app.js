@@ -64,6 +64,8 @@ const els = {
   iconPlay: document.getElementById('icon-play'),
   iconPause: document.getElementById('icon-pause'),
   settingsBtn: document.getElementById('settings-btn'),
+  soundBtn: document.getElementById('sound-btn'),
+  vibrationBtn: document.getElementById('vibration-btn'),
   rotateBanner: document.getElementById('rotate-banner'),
   rotateBannerClose: document.getElementById('rotate-banner-close'),
   settingsPanel: document.getElementById('settings-panel'),
@@ -472,12 +474,17 @@ function audioTimeFromPerf(perfMs) {
   return nowAudio + (perfMs - nowPerf) / 1000;
 }
 
+// Sound/vibration toggles, remembered across visits.
+let soundMuted = localStorage.getItem('soundMuted') === '1';
+let vibrationEnabled = localStorage.getItem('vibrationEnabled') !== '0';
+
 // Haptic backup for the discrete cues (countdown ticks, "go", stage-ending
 // ticks) - useful over gym music or without headphones in. Deliberately not
 // used for the per-stroke cadence beeps: buzzing on every stroke the whole
 // workout would be excessive and drain the battery for no real benefit.
 // iOS Safari has no Vibration API at all, so this is a no-op there.
 function vibrate(pattern) {
+  if (!vibrationEnabled) return;
   if (navigator.vibrate) {
     try {
       navigator.vibrate(pattern);
@@ -488,6 +495,7 @@ function vibrate(pattern) {
 }
 
 function beep(freq, duration, when) {
+  if (soundMuted) return null;
   // Self-heal every call: some browsers silently suspend the AudioContext
   // again (e.g. after a phone screen locks mid-workout), and without this
   // every beep after that point would be scheduled but never actually heard.
@@ -699,6 +707,28 @@ els.settingsBtn.addEventListener('click', () => {
 });
 els.settingsClose.addEventListener('click', () => {
   els.settingsPanel.hidden = true;
+});
+
+function updateSoundButton() {
+  els.soundBtn.classList.toggle('off', soundMuted);
+  els.soundBtn.title = soundMuted ? 'Geluid: uit' : 'Geluid: aan';
+}
+function updateVibrationButton() {
+  els.vibrationBtn.classList.toggle('off', !vibrationEnabled);
+  els.vibrationBtn.title = vibrationEnabled ? 'Trilling: aan' : 'Trilling: uit';
+}
+updateSoundButton();
+updateVibrationButton();
+
+els.soundBtn.addEventListener('click', () => {
+  soundMuted = !soundMuted;
+  localStorage.setItem('soundMuted', soundMuted ? '1' : '0');
+  updateSoundButton();
+});
+els.vibrationBtn.addEventListener('click', () => {
+  vibrationEnabled = !vibrationEnabled;
+  localStorage.setItem('vibrationEnabled', vibrationEnabled ? '1' : '0');
+  updateVibrationButton();
 });
 
 els.fileInput.addEventListener('change', (e) => {

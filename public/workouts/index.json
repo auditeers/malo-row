@@ -1,4 +1,5 @@
 [
+  { "file": "5min-warmup.json", "name": "5 min - Warm-up" },
   { "file": "10min-starter-endurance.json", "name": "10 min - Starter - Endurance" },
   { "file": "10min-intermediate-30-30.json", "name": "10 min - Intermediate - 30:30 Intervals" },
   { "file": "10min-expert-power.json", "name": "10 min - Expert - Power Strokes" },

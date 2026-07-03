@@ -75,15 +75,30 @@ html, body {
   padding-right: max(var(--app-padding-x), env(safe-area-inset-right));
 }
 
-.settings-btn {
+.top-controls {
   position: absolute;
   top: 22px;
   right: var(--app-padding-x);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 5;
+}
+
+.top-control-btn,
+.settings-btn {
   background: transparent;
   border: none;
   color: var(--text-muted);
   cursor: pointer;
   padding: 6px;
+}
+.top-control-btn:hover,
+.settings-btn:hover {
+  color: var(--teal);
+}
+.top-control-btn.off {
+  opacity: 0.35;
 }
 
 .rotate-banner {
@@ -140,7 +155,6 @@ html, body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.settings-btn:hover { color: var(--teal); }
 
 .left-panel {
   display: flex;
@@ -526,7 +540,7 @@ html, body {
   .right-panel { flex-direction: row-reverse; align-items: center; }
   .right-panel .spm-display { margin-right: 8px; }
   .controls { grid-template-columns: 1fr; }
-  .settings-btn { top: 6px; }
+  .top-controls { top: 6px; }
   .workout-title { top: 6px; }
   .ctrl-btn svg { width: 60%; height: 60%; }
   .stage-timer { text-shadow: none; }

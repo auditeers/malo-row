@@ -1,0 +1,10 @@
+{
+  "name": "5 min Warm-up",
+  "description": "Korte, progressieve warming-up om voor elke training te gebruiken: rate bouwt rustig op van 16 naar 20 spm, zodat lichaam en gewrichten voorbereid zijn voordat je aan de eigenlijke training begint.",
+  "source": "Standard progressive warm-up ramp (gradually increasing stroke rate before the main set)",
+  "stages": [
+    { "name": "Warming up", "type": "warmup", "duration": 100, "spm": 16 },
+    { "name": "Warming up", "type": "warmup", "duration": 100, "spm": 18 },
+    { "name": "Warming up", "type": "warmup", "duration": 100, "spm": 20 }
+  ]
+}

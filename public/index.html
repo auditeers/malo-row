@@ -121,7 +121,30 @@
       <h2>Instellingen</h2>
       <p class="workout-name" id="workout-name">Geen workout geladen</p>
 
-      <label class="select-label" for="workout-select">Kies uit bibliotheek</label>
+      <label class="select-label">Kies uit bibliotheek</label>
+      <div class="filter-row">
+        <select id="filter-time" class="filter-select" title="Tijd">
+          <option value="">Tijd: alle</option>
+          <option value="5">5 min</option>
+          <option value="10">10 min</option>
+          <option value="15">15 min</option>
+          <option value="20">20 min</option>
+          <option value="30">30 min</option>
+        </select>
+        <select id="filter-level" class="filter-select" title="Niveau">
+          <option value="">Niveau: alle</option>
+          <option value="starter">Starter</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="expert">Expert</option>
+        </select>
+        <select id="filter-type" class="filter-select" title="Type">
+          <option value="">Type: alle</option>
+          <option value="endurance">Endurance</option>
+          <option value="interval">Interval</option>
+          <option value="strength">Strength</option>
+          <option value="warmup">Warm-up</option>
+        </select>
+      </div>
       <select id="workout-select" class="workout-select">
         <option value="">– Kies een workout –</option>
       </select>
@@ -130,7 +153,6 @@
         Laad eigen workout JSON
         <input type="file" id="file-input" accept="application/json,.json" />
       </label>
-      <button id="btn-load-example" class="text-btn">Laad voorbeeld workout</button>
       <button id="settings-close" class="text-btn">Sluiten</button>
     </div>
   </div>

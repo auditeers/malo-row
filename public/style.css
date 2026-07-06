@@ -427,7 +427,8 @@ html, body {
   color: var(--text-muted);
   margin-bottom: 6px;
 }
-.workout-select {
+.workout-select,
+.filter-select {
   display: block;
   width: 100%;
   background: var(--bg);
@@ -435,14 +436,29 @@ html, body {
   color: var(--text);
   padding: 11px 12px;
   border-radius: 8px;
-  margin-bottom: 16px;
   font-size: 15px;
   cursor: pointer;
 }
+.workout-select {
+  margin-bottom: 16px;
+}
 .workout-select:hover,
-.workout-select:focus {
+.workout-select:focus,
+.filter-select:hover,
+.filter-select:focus {
   border-color: var(--teal);
   outline: none;
+}
+
+.filter-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.filter-select {
+  padding: 9px 6px;
+  font-size: 12px;
 }
 
 .file-label {

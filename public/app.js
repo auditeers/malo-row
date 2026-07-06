@@ -26,17 +26,15 @@ function driveFractionForSpm(spm) {
   return Math.max(0.25, Math.min(0.5, raw));
 }
 
+// Embedded (not fetched) so the app is instantly usable the moment it's
+// opened, with no network round-trip - same 5-minute warm-up as
+// workouts/5min-warmup.json, just duplicated here for zero-latency startup.
 const DEFAULT_WORKOUT = {
-  name: '20 minuten intervalmix',
+  name: '5 min Warm-up',
   stages: [
-    { name: 'Warming up', type: 'warmup', duration: 300, spm: 18 },
-    { name: 'Interval 1', type: 'row', duration: 120, spm: 24 },
-    { name: 'Rust', type: 'rest', duration: 60, spm: 0 },
-    { name: 'Interval 2', type: 'row', duration: 120, spm: 26 },
-    { name: 'Rust', type: 'rest', duration: 60, spm: 0 },
-    { name: 'Interval 3', type: 'row', duration: 120, spm: 28 },
-    { name: 'Rust', type: 'rest', duration: 60, spm: 0 },
-    { name: 'Afkoelen', type: 'cooldown', duration: 300, spm: 16 },
+    { name: 'Warming up', type: 'warmup', duration: 100, spm: 16 },
+    { name: 'Warming up', type: 'warmup', duration: 100, spm: 18 },
+    { name: 'Warming up', type: 'warmup', duration: 100, spm: 20 },
   ],
 };
 
@@ -73,8 +71,10 @@ const els = {
   workoutName: document.getElementById('workout-name'),
   workoutTitle: document.getElementById('workout-title'),
   workoutSelect: document.getElementById('workout-select'),
+  filterTime: document.getElementById('filter-time'),
+  filterLevel: document.getElementById('filter-level'),
+  filterType: document.getElementById('filter-type'),
   fileInput: document.getElementById('file-input'),
-  btnLoadExample: document.getElementById('btn-load-example'),
   btnPrev: document.getElementById('btn-prev'),
   btnNext: document.getElementById('btn-next'),
   btnStop: document.getElementById('btn-stop'),
@@ -774,30 +774,57 @@ els.fileInput.addEventListener('change', (e) => {
   reader.readAsText(file);
 });
 
-els.btnLoadExample.addEventListener('click', () => {
-  loadWorkout(DEFAULT_WORKOUT);
-  els.workoutSelect.value = '';
-  els.settingsPanel.hidden = true;
-});
+// Loaded once from workouts/index.json, then filtered client-side by the
+// time/level/type dropdowns - the manifest stays the single source of truth
+// for what's in the library instead of hard-coding the list here.
+let libraryEntries = [];
 
-// Populate the "load from library" dropdown from workouts/index.json, so the
-// list of available workouts lives in one place (that manifest) instead of
-// being hard-coded here. Fails quietly if unavailable (e.g. opened via
-// file:// rather than a real server) - the file-picker and example button
-// still work either way.
+function renderWorkoutOptions() {
+  const time = els.filterTime.value;
+  const level = els.filterLevel.value;
+  const type = els.filterType.value;
+  const matches = libraryEntries.filter(
+    (entry) =>
+      (!time || String(entry.minutes) === time) &&
+      (!level || entry.level === level || entry.level === 'alle') &&
+      (!type || entry.type === type)
+  );
+
+  const previousValue = els.workoutSelect.value;
+  els.workoutSelect.innerHTML = '';
+  const placeholder = document.createElement('option');
+  placeholder.value = '';
+  placeholder.textContent = matches.length
+    ? '– Kies een workout –'
+    : 'Geen workout met deze filters';
+  els.workoutSelect.appendChild(placeholder);
+  for (const entry of matches) {
+    const option = document.createElement('option');
+    option.value = entry.file;
+    option.textContent = entry.name;
+    els.workoutSelect.appendChild(option);
+  }
+  // Keep the current selection if it still matches the new filters.
+  if (matches.some((entry) => entry.file === previousValue)) {
+    els.workoutSelect.value = previousValue;
+  }
+}
+
 fetch('workouts/index.json')
   .then((r) => r.json())
   .then((entries) => {
-    for (const entry of entries) {
-      const option = document.createElement('option');
-      option.value = entry.file;
-      option.textContent = entry.name;
-      els.workoutSelect.appendChild(option);
-    }
+    libraryEntries = entries;
+    renderWorkoutOptions();
   })
   .catch(() => {
-    // No manifest reachable - leave the dropdown as just the placeholder.
+    // No manifest reachable (e.g. opened via file:// rather than a real
+    // server) - leave the dropdown as just the placeholder; the file-picker
+    // still works either way.
   });
+
+els.filterTime.addEventListener('change', renderWorkoutOptions);
+els.filterLevel.addEventListener('change', renderWorkoutOptions);
+els.filterType.addEventListener('change', renderWorkoutOptions);
 
 els.workoutSelect.addEventListener('change', () => {
   const file = els.workoutSelect.value;

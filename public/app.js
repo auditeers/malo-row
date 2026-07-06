@@ -32,9 +32,9 @@ function driveFractionForSpm(spm) {
 const DEFAULT_WORKOUT = {
   name: '5 min Warm-up',
   stages: [
-    { name: 'Warming up', type: 'warmup', duration: 100, spm: 16 },
     { name: 'Warming up', type: 'warmup', duration: 100, spm: 18 },
     { name: 'Warming up', type: 'warmup', duration: 100, spm: 20 },
+    { name: 'Warming up', type: 'warmup', duration: 100, spm: 22 },
   ],
 };
 

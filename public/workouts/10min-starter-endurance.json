@@ -3,8 +3,23 @@
   "description": "Korte, technische duurtraining voor beginners: rustig en gelijkmatig op lage/matige stroke rate. Gebaseerd op de aanbeveling van British Rowing om als beginner in korte sessies (10-20 min) op 18-24 spm te roeien en vooral op techniek te letten, niet op snelheid.",
   "source": "British Rowing - Go Row Indoor beginner guidance (18-24 spm continuous steady state)",
   "stages": [
-    { "name": "Warming up", "type": "warmup", "duration": 120, "spm": 16 },
-    { "name": "Steady state", "type": "row", "duration": 360, "spm": 20 },
-    { "name": "Afkoelen", "type": "cooldown", "duration": 120, "spm": 14 }
+    {
+      "name": "Warming up",
+      "type": "warmup",
+      "duration": 120,
+      "spm": 20
+    },
+    {
+      "name": "Steady state",
+      "type": "row",
+      "duration": 360,
+      "spm": 24
+    },
+    {
+      "name": "Afkoelen",
+      "type": "cooldown",
+      "duration": 120,
+      "spm": 18
+    }
   ]
 }

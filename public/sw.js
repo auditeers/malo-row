@@ -3,7 +3,7 @@
 // basement gym), while also fetching the network in the background to keep
 // the cache fresh for next time. Bump CACHE_VERSION when the app shell
 // changes so old caches get cleaned up on the next activate.
-const CACHE_VERSION = 'v4';
+const CACHE_VERSION = 'v5';
 const CACHE_NAME = 'rowing-pacer-' + CACHE_VERSION;
 
 const PRECACHE_URLS = [

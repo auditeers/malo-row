@@ -3,20 +3,95 @@
   "description": "De klassieke piramide-intervaltraining (1-2-3-4-3-2-1 minuut) met 1 minuut rust ertussen, op hoge rate - een pittige sessie voor ervaren roeiers.",
   "source": "Pyramid rowing interval structure - classic 1-2-3-4-3-2-1 minute ladder",
   "stages": [
-    { "name": "Warming up", "type": "warmup", "duration": 300, "spm": 20 },
-    { "name": "Piramide 1min", "type": "row", "duration": 60, "spm": 30 },
-    { "name": "Rust", "type": "rest", "duration": 60, "spm": 20 },
-    { "name": "Piramide 2min", "type": "row", "duration": 120, "spm": 28 },
-    { "name": "Rust", "type": "rest", "duration": 60, "spm": 20 },
-    { "name": "Piramide 3min", "type": "row", "duration": 180, "spm": 27 },
-    { "name": "Rust", "type": "rest", "duration": 60, "spm": 20 },
-    { "name": "Piramide 4min", "type": "row", "duration": 240, "spm": 26 },
-    { "name": "Rust", "type": "rest", "duration": 60, "spm": 20 },
-    { "name": "Piramide 3min", "type": "row", "duration": 180, "spm": 27 },
-    { "name": "Rust", "type": "rest", "duration": 60, "spm": 20 },
-    { "name": "Piramide 2min", "type": "row", "duration": 120, "spm": 28 },
-    { "name": "Rust", "type": "rest", "duration": 60, "spm": 20 },
-    { "name": "Piramide 1min", "type": "row", "duration": 60, "spm": 30 },
-    { "name": "Afkoelen", "type": "cooldown", "duration": 180, "spm": 20 }
+    {
+      "name": "Warming up",
+      "type": "warmup",
+      "duration": 300,
+      "spm": 20
+    },
+    {
+      "name": "Piramide 1min",
+      "type": "row",
+      "duration": 60,
+      "spm": 32
+    },
+    {
+      "name": "Rust",
+      "type": "rest",
+      "duration": 60,
+      "spm": 20
+    },
+    {
+      "name": "Piramide 2min",
+      "type": "row",
+      "duration": 120,
+      "spm": 30
+    },
+    {
+      "name": "Rust",
+      "type": "rest",
+      "duration": 60,
+      "spm": 20
+    },
+    {
+      "name": "Piramide 3min",
+      "type": "row",
+      "duration": 180,
+      "spm": 29
+    },
+    {
+      "name": "Rust",
+      "type": "rest",
+      "duration": 60,
+      "spm": 20
+    },
+    {
+      "name": "Piramide 4min",
+      "type": "row",
+      "duration": 240,
+      "spm": 28
+    },
+    {
+      "name": "Rust",
+      "type": "rest",
+      "duration": 60,
+      "spm": 20
+    },
+    {
+      "name": "Piramide 3min",
+      "type": "row",
+      "duration": 180,
+      "spm": 29
+    },
+    {
+      "name": "Rust",
+      "type": "rest",
+      "duration": 60,
+      "spm": 20
+    },
+    {
+      "name": "Piramide 2min",
+      "type": "row",
+      "duration": 120,
+      "spm": 30
+    },
+    {
+      "name": "Rust",
+      "type": "rest",
+      "duration": 60,
+      "spm": 20
+    },
+    {
+      "name": "Piramide 1min",
+      "type": "row",
+      "duration": 60,
+      "spm": 32
+    },
+    {
+      "name": "Afkoelen",
+      "type": "cooldown",
+      "duration": 180,
+      "spm": 20
+    }
   ]
 }

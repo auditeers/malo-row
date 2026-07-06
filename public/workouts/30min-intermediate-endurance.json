@@ -3,8 +3,23 @@
   "description": "Langere doorlopende duurtraining op een gecontroleerde, iets stevigere rate. Dit soort steady-state werk vormt volgens de '80/20'-trainingsfilosofie het grootste deel van het trainingsvolume, ook voor ervaren roeiers.",
   "source": "Polarized/80-20 rowing training guidance - roughly 80% of training volume should be low-intensity steady state (UT1/UT2), at every level",
   "stages": [
-    { "name": "Warming up", "type": "warmup", "duration": 240, "spm": 18 },
-    { "name": "Steady state", "type": "row", "duration": 1380, "spm": 22 },
-    { "name": "Afkoelen", "type": "cooldown", "duration": 180, "spm": 16 }
+    {
+      "name": "Warming up",
+      "type": "warmup",
+      "duration": 240,
+      "spm": 20
+    },
+    {
+      "name": "Steady state",
+      "type": "row",
+      "duration": 1380,
+      "spm": 24
+    },
+    {
+      "name": "Afkoelen",
+      "type": "cooldown",
+      "duration": 180,
+      "spm": 18
+    }
   ]
 }

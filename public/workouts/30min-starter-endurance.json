@@ -3,8 +3,23 @@
   "description": "Langere, ontspannen duurtraining om de basisconditie op te bouwen, volledig op lage/matige rate (18-24 spm) zoals aanbevolen voor beginners.",
   "source": "British Rowing - Go Row Indoor beginner guidance (steady state endurance base-building)",
   "stages": [
-    { "name": "Warming up", "type": "warmup", "duration": 240, "spm": 16 },
-    { "name": "Steady state", "type": "row", "duration": 1380, "spm": 20 },
-    { "name": "Afkoelen", "type": "cooldown", "duration": 180, "spm": 14 }
+    {
+      "name": "Warming up",
+      "type": "warmup",
+      "duration": 240,
+      "spm": 20
+    },
+    {
+      "name": "Steady state",
+      "type": "row",
+      "duration": 1380,
+      "spm": 24
+    },
+    {
+      "name": "Afkoelen",
+      "type": "cooldown",
+      "duration": 180,
+      "spm": 18
+    }
   ]
 }

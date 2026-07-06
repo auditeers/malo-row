@@ -1,0 +1,17 @@
+{
+  "name": "15 min Intermediate Strength",
+  "description": "Krachtblokken op een gecontroleerde rate (20 spm), met de nadruk op kracht per haal in plaats van een hoge stroke rate. Een toegankelijkere opbouw naar krachttraining dan de Expert-versie.",
+  "source": "Low-rate, high-power strength training guidance for indoor rowing, moderated for intermediate level",
+  "stages": [
+    { "name": "Warming up", "type": "warmup", "duration": 120, "spm": 16 },
+    { "name": "Kracht 1", "type": "row", "duration": 120, "spm": 20 },
+    { "name": "Rust 1", "type": "rest", "duration": 60, "spm": 22 },
+    { "name": "Kracht 2", "type": "row", "duration": 120, "spm": 20 },
+    { "name": "Rust 2", "type": "rest", "duration": 60, "spm": 22 },
+    { "name": "Kracht 3", "type": "row", "duration": 120, "spm": 20 },
+    { "name": "Rust 3", "type": "rest", "duration": 60, "spm": 22 },
+    { "name": "Kracht 4", "type": "row", "duration": 120, "spm": 20 },
+    { "name": "Rust 4", "type": "rest", "duration": 60, "spm": 22 },
+    { "name": "Afkoelen", "type": "cooldown", "duration": 60, "spm": 16 }
+  ]
+}

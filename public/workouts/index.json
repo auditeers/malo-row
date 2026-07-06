@@ -1,15 +1,21 @@
 [
   { "file": "5min-warmup.json", "name": "5 min Warm-up", "minutes": 5, "level": "alle", "type": "warmup" },
   { "file": "10min-starter-endurance.json", "name": "10 min Starter Endurance", "minutes": 10, "level": "starter", "type": "endurance" },
+  { "file": "10min-starter-interval.json", "name": "10 min Starter Interval", "minutes": 10, "level": "starter", "type": "interval" },
   { "file": "10min-intermediate-30-30.json", "name": "10 min Intermediate 30:30", "minutes": 10, "level": "intermediate", "type": "interval" },
   { "file": "10min-expert-power.json", "name": "10 min Expert Power Strokes", "minutes": 10, "level": "expert", "type": "strength" },
   { "file": "15min-starter-endurance.json", "name": "15 min Starter Endurance", "minutes": 15, "level": "starter", "type": "endurance" },
   { "file": "15min-intermediate-pyramid.json", "name": "15 min Intermediate Pyramid", "minutes": 15, "level": "intermediate", "type": "interval" },
+  { "file": "15min-intermediate-strength.json", "name": "15 min Intermediate Strength", "minutes": 15, "level": "intermediate", "type": "strength" },
   { "file": "15min-expert-strength.json", "name": "15 min Expert Strength", "minutes": 15, "level": "expert", "type": "strength" },
   { "file": "20min-starter-endurance.json", "name": "20 min Starter Endurance", "minutes": 20, "level": "starter", "type": "endurance" },
+  { "file": "20min-intermediate-endurance.json", "name": "20 min Intermediate Endurance", "minutes": 20, "level": "intermediate", "type": "endurance" },
   { "file": "20min-intermediate-40-20.json", "name": "20 min Intermediate 40:20", "minutes": 20, "level": "intermediate", "type": "interval" },
   { "file": "20min-expert-8x1.json", "name": "20 min Expert 8x1", "minutes": 20, "level": "expert", "type": "interval" },
+  { "file": "20min-expert-strength.json", "name": "20 min Expert Strength", "minutes": 20, "level": "expert", "type": "strength" },
   { "file": "30min-starter-endurance.json", "name": "30 min Starter Endurance", "minutes": 30, "level": "starter", "type": "endurance" },
+  { "file": "30min-intermediate-endurance.json", "name": "30 min Intermediate Endurance", "minutes": 30, "level": "intermediate", "type": "endurance" },
   { "file": "30min-intermediate-4x4.json", "name": "30 min Intermediate 4x4", "minutes": 30, "level": "intermediate", "type": "interval" },
-  { "file": "30min-expert-pyramid.json", "name": "30 min Expert Pyramid", "minutes": 30, "level": "expert", "type": "interval" }
+  { "file": "30min-expert-pyramid.json", "name": "30 min Expert Pyramid", "minutes": 30, "level": "expert", "type": "interval" },
+  { "file": "30min-expert-endurance.json", "name": "30 min Expert Endurance", "minutes": 30, "level": "expert", "type": "endurance" }
 ]

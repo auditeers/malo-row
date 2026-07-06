@@ -1,0 +1,10 @@
+{
+  "name": "30 min Expert Endurance",
+  "description": "Een lange, gecontroleerde duurtraining (vergelijkbaar met 'UT2' basistraining) op een gestage rate. Ook voor ervaren roeiers bestaat het grootste deel van het trainingsvolume uit dit soort rustig aerobe werk, niet uit intervallen.",
+  "source": "Polarized/80-20 rowing training guidance - roughly 80% of training volume should be low-intensity steady state (UT1/UT2), even for elite/experienced rowers",
+  "stages": [
+    { "name": "Warming up", "type": "warmup", "duration": 240, "spm": 18 },
+    { "name": "Steady state", "type": "row", "duration": 1380, "spm": 24 },
+    { "name": "Afkoelen", "type": "cooldown", "duration": 180, "spm": 18 }
+  ]
+}

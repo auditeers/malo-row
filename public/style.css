@@ -101,6 +101,50 @@ html, body {
   opacity: 0.35;
 }
 
+.motivation-toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.75);
+  z-index: 40;
+  pointer-events: none;
+  background: linear-gradient(135deg, var(--teal), #17c9a8);
+  color: #052422;
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  padding: 20px 36px;
+  border-radius: 18px;
+  box-shadow: 0 20px 50px -10px rgba(42, 240, 201, 0.55);
+  opacity: 0;
+  white-space: nowrap;
+  text-align: center;
+}
+.motivation-toast.show {
+  animation: motivationPop 2.6s ease forwards;
+}
+@keyframes motivationPop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.75);
+  }
+  12% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+  20% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+}
+
 .rotate-banner {
   position: fixed;
   top: env(safe-area-inset-top, 0px);

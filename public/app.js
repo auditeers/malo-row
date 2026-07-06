@@ -59,6 +59,7 @@ const els = {
   cadencePanel: document.getElementById('cadence-panel'),
   countdownOverlay: document.getElementById('countdown-overlay'),
   countdownNumber: document.getElementById('countdown-number'),
+  motivationToast: document.getElementById('motivation-toast'),
   iconPlay: document.getElementById('icon-play'),
   iconPause: document.getElementById('icon-pause'),
   settingsBtn: document.getElementById('settings-btn'),
@@ -92,6 +93,15 @@ let runStartPerf = null;
 let running = false;
 let wakeLock = null;
 let hasStarted = false; // true once the workout has been played at least once
+
+// Brief, non-blocking "you're halfway"/"almost there" toasts at 50%/90% of
+// the total workout. Purely a motivational flourish - auto-dismisses on its
+// own and never blocks interaction, so it can't interfere with the training.
+const MOTIVATION_MILESTONES = [
+  { fraction: 0.5, text: "Je bent halverwege!" },
+  { fraction: 0.9, text: "Bijna daar!" },
+];
+let motivationShown = MOTIVATION_MILESTONES.map(() => false);
 
 // A "5, 4, 3, 2, 1" get-ready countdown runs before every start (initial or
 // after a pause) - the workout clock and stroke beeps don't begin until it
@@ -195,6 +205,7 @@ function loadWorkout(data) {
   countdownActive = false;
   countdownStartPerf = null;
   els.countdownOverlay.hidden = true;
+  motivationShown = MOTIVATION_MILESTONES.map(() => false);
   runStartPerf = null;
   runOffset = 0;
   stopAudioScheduler();
@@ -238,6 +249,15 @@ function updatePlayPauseIcon(playing) {
     els.iconPlay.style.display = playing ? 'none' : 'block';
     els.iconPause.style.display = playing ? 'block' : 'none';
   }
+}
+
+function showMotivationToast(text) {
+  els.motivationToast.textContent = text;
+  // Restart the CSS animation even if one is already mid-flight (unlikely
+  // given the milestones are far apart, but cheap to guard against).
+  els.motivationToast.classList.remove('show');
+  void els.motivationToast.offsetWidth;
+  els.motivationToast.classList.add('show');
 }
 
 function render(nowPerf) {
@@ -290,6 +310,24 @@ function render(nowPerf) {
   const stageElapsed = Math.max(0, elapsed - stageStart);
   const stageRemaining = stage.duration - stageElapsed;
   const finished = elapsed >= totalDuration;
+
+  // Motivational milestones: only while actively running (skipping around
+  // while paused shouldn't pop these), and each fires once per crossing -
+  // rewinding back past a milestone (Prev, or loading a new workout) resets
+  // it so it can fire again next time through.
+  if (totalDuration > 0) {
+    const progress = elapsed / totalDuration;
+    MOTIVATION_MILESTONES.forEach((milestone, i) => {
+      if (progress >= milestone.fraction) {
+        if (running && !motivationShown[i]) {
+          motivationShown[i] = true;
+          showMotivationToast(milestone.text);
+        }
+      } else {
+        motivationShown[i] = false;
+      }
+    });
+  }
 
   setText(els.statTotal, 'total', formatTime(totalDuration));
   setText(els.statElapsed, 'elapsed', formatTime(elapsed));
@@ -698,6 +736,7 @@ els.btnStop.addEventListener('click', () => {
   countdownActive = false;
   countdownStartPerf = null;
   els.countdownOverlay.hidden = true;
+  els.motivationToast.classList.remove('show');
   runOffset = 0;
   runStartPerf = null;
   stopAudioScheduler();
